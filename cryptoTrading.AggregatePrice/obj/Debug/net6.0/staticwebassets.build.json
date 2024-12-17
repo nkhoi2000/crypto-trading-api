@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "cwY2+JWki9DSkB4vQV2705nACu0n5VwqqldeofDWdeM=",
+  "Source": "cryptoTrading.AggregatePrice",
+  "BasePath": "_content/cryptoTrading.AggregatePrice",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
