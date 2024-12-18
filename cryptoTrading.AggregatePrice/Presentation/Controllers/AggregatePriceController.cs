@@ -9,5 +9,15 @@ namespace cryptoTrading.AggregatePrice.Presentation.Controllers
     public class AggregatePriceController : ControllerBase
     {
         private readonly IPriceService _priceService;
+        public AggregatePriceController(IPriceService priceService)
+        {
+            _priceService = priceService;
+        }
+        [HttpPost("aggregate-price")]
+        public async Task<IActionResult> AggregatePrices()
+        {
+            await _priceService.FetchAndAggregatePrices();
+            return Ok("Prices aggregated successful");
+        }
     }
 }
