@@ -21,11 +21,16 @@ namespace cryptoTrading.AggregatePrice.Infrastructure.ExternalApis
                 var response = await _httpClient.GetStringAsync("https://api.huobi.pro/market/tickers");
                 var prices = JsonConvert.DeserializeObject<HoubiResponse>(response);
 
+                if (prices == null){
+                    throw new Exception("Failed to fetch price data from Binance source.");
+                }
+
                 return prices.Data.Select(p => new PriceData
                 {
                     TradingPair = p.Symbol.ToUpper(),
                     BidPrice = p.Bid,
-                    AskPrice = p.Ask
+                    AskPrice = p.Ask,
+                    Source = "HOUBI"
                 });
             }
             catch (Exception ex)

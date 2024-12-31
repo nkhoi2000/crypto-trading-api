@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cryptoTrading.AggregatePrice", "cryptoTrading.AggregatePrice\cryptoTrading.AggregatePrice.csproj", "{8309852C-45D0-4D2B-A9C2-B73D3C5F0352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cryptoTrading.TradingService", "cryptoTrading.TradingService\cryptoTrading.TradingService.csproj", "{4A41BAD6-2A0D-4126-BEC9-55285E0CA109}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8309852C-45D0-4D2B-A9C2-B73D3C5F0352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8309852C-45D0-4D2B-A9C2-B73D3C5F0352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8309852C-45D0-4D2B-A9C2-B73D3C5F0352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8309852C-45D0-4D2B-A9C2-B73D3C5F0352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A41BAD6-2A0D-4126-BEC9-55285E0CA109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A41BAD6-2A0D-4126-BEC9-55285E0CA109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A41BAD6-2A0D-4126-BEC9-55285E0CA109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A41BAD6-2A0D-4126-BEC9-55285E0CA109}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A4B83517-F522-4C6E-9C37-C988118A0303}
+	EndGlobalSection
+EndGlobal

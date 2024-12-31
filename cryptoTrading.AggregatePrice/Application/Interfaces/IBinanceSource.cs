@@ -2,8 +2,5 @@
 
 namespace cryptoTrading.AggregatePrice.Application.Interfaces
 {
-    public interface IBinanceSource
-    {
-        public Task<IEnumerable<PriceData>> GetPriceAsync();
-    }
+    public interface IBinanceSource : IPriceSource { }
 }

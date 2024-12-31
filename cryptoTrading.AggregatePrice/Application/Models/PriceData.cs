@@ -2,8 +2,9 @@
 {
     public class PriceData
     {
-        public string TradingPair {  get; set; }
+        public required string TradingPair {  get; set; }
         public decimal BidPrice { get; set; }
         public decimal AskPrice { get; set; }
+        public string? Source { get; set; }
     }
 }

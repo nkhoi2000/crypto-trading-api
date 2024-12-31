@@ -3,9 +3,11 @@
     public class AggregatedPrice
     {
         public int Id { get; set; }
-        public string TradingPair { get; set; }
-        public decimal BidPrice { get; set; }
-        public decimal AskPrice { get; set; }
+        public required string TradingPair { get; set; }
+        public decimal BestBid { get; set; }
+        public string? BidSource { get; set; }
+        public decimal BestAsk { get; set; }
+        public string? AskSource { get; set; }
         public DateTime Timestamp { get; set; }
     }
 }

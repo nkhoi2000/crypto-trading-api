@@ -19,5 +19,12 @@ namespace cryptoTrading.AggregatePrice.Presentation.Controllers
             await _priceService.FetchAndAggregatePrices();
             return Ok("Prices aggregated successful");
         }
+
+        [HttpGet("prices")]
+        public async Task<IActionResult> GetAllPrices()
+        {
+            var prices = await _priceService.GetAllPricesAsync();
+            return Ok(prices);
+        }
     }
 }

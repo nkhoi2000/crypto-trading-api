@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "TISHX+Lk6UOxrzmJSO1zeul1Eic0wgsnRJ84SKY0po4=",
+  "Source": "cryptoTrading.TradingService",
+  "BasePath": "_content/cryptoTrading.TradingService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

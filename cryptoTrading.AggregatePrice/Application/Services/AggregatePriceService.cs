@@ -2,6 +2,7 @@
 using cryptoTrading.AggregatePrice.Application.Models;
 using cryptoTrading.AggregatePrice.Domain.Entities;
 using cryptoTrading.AggregatePrice.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Net.WebSockets;
 
 namespace cryptoTrading.AggregatePrice.Application.Services
@@ -24,36 +25,46 @@ namespace cryptoTrading.AggregatePrice.Application.Services
         public async Task FetchAndAggregatePrices()
         {
             var allPrice = new List<PriceData>();
-            foreach (var source in _houbiSource)
-            {
-                var prices = await source.GetPriceAsync();
-                allPrice.AddRange(prices);
-            }
+            allPrice.AddRange(await FetchPricesFromSource(_houbiSource));
+            allPrice.AddRange(await FetchPricesFromSource(_binanceSource));
 
-            foreach (var source in _binanceSource)
-            {
-                var prices = await source.GetPriceAsync();
-                allPrice.AddRange(prices);
-            }
-            
             var pairs = new[] { "ETHUSDT", "BTCUSDT" };
-            foreach (var pair in pairs) {
+            foreach (var pair in pairs)
+            {
                 var pairPrice = allPrice.Where(p => p.TradingPair == pair);
                 if (pairPrice.Any())
                 {
-                    var bestBid = pairPrice.Max(p => p.BidPrice);
-                    var bestAsk = pairPrice.Min(p => p.AskPrice);
+                    var bestBidPrice = pairPrice.OrderByDescending(p => p.BidPrice).First();
+                    var bestAskPrice = pairPrice.OrderBy(p => p.AskPrice).First();
                     var aggregatePrice = new AggregatedPrice
                     {
                         TradingPair = pair,
-                        BidPrice = bestBid,
-                        AskPrice = bestAsk,
+                        BestBid = bestBidPrice.BidPrice,
+                        BidSource = bestBidPrice.Source,
+                        BestAsk = bestAskPrice.AskPrice,
+                        AskSource = bestAskPrice.Source,
                         Timestamp = DateTime.UtcNow
                     };
                     _tradingDbContext.AggregatePrices.Add(aggregatePrice);
                 }
             }
             await _tradingDbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<AggregatedPrice>> GetAllPricesAsync()
+        {
+            return await _tradingDbContext.AggregatePrices.ToListAsync();
+        }
+
+        private async Task<IEnumerable<PriceData>> FetchPricesFromSource(IEnumerable<IPriceSource> sources)
+        {
+            var prices = new List<PriceData>();
+            foreach (var source in sources)
+            {
+                var sourcePrices = await source.GetPriceAsync();
+                prices.AddRange(sourcePrices);
+            }
+            return prices;
         }
     }
 }

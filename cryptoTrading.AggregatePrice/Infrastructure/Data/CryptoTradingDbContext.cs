@@ -3,10 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace cryptoTrading.AggregatePrice.Infrastructure.Data
 {
-    public class CryptoTradingDbContext : DbContext
+    public class CryptoTradingDbContext(DbContextOptions<CryptoTradingDbContext> options) : DbContext(options)
     {
-        public DbSet<AggregatedPrice> AggregatePrices { get; set; }
-        public CryptoTradingDbContext(DbContextOptions<CryptoTradingDbContext> options) : base(options) { }
-
+        public required DbSet<AggregatedPrice> AggregatePrices { get; set; }
     }
 }

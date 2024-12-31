@@ -20,12 +20,16 @@ namespace cryptoTrading.AggregatePrice.Infrastructure.ExternalApis
             {
                 var response = await _httpClient.GetStringAsync("https://api.binance.com/api/v3/ticker/bookTicker");
                 var prices = JsonConvert.DeserializeObject<List<dynamic>>(response);
+                if (prices == null){
+                    throw new Exception("Failed to fetch price data from Binance source.");
+                }
 
                 return prices.Select(p => new PriceData
                 {
                     TradingPair = p.symbol,
                     BidPrice = decimal.Parse((string)p.bidPrice),
                     AskPrice = decimal.Parse((string)p.askPrice),
+                    Source = "BINANCE"
                 });
             }
             catch (Exception ex)
